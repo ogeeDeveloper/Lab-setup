@@ -1,0 +1,61 @@
+version: "3.8"
+services:
+  jenkins-master:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JENKINS_SLAVE_AGENT_PORT=50000
+
+  jenkins-slave:
+    build: ./jenkins-slave
+    depends_on:
+      - jenkins-master
+    environment:
+      - JENKINS_URL=http://jenkins-master:8080
+      - JENKINS_AGENT_NAME=slave01
+      - JENKINS_SECRET=jenkins-agent-secret
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    ports:
+      - "2222:22"
+    volumes:
+      - jenkins-slave-ssh:/root/.ssh
+
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-extensions:/opt/sonarqube/extensions
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+networks:
+  default:
+    name: labsetup_default
+
+volumes:
+  jenkins-data:
+  jenkins-slave-ssh:
+  sonarqube-data:
+  sonarqube-logs:
+  sonarqube-extensions:
+  grafana-storage:

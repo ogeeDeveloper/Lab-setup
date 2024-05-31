@@ -1,0 +1,23 @@
+global:
+  scrape_interval: 15s # By default, scrape targets every 15 seconds.
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "jenkins-master"
+    static_configs:
+      - targets: ["jenkins-master:8080"]
+
+  - job_name: "jenkins-slave"
+    static_configs:
+      - targets: ["jenkins-slave:50000"]
+
+  - job_name: "sonarqube"
+    static_configs:
+      - targets: ["sonarqube:9000"]
+
+  - job_name: "grafana"
+    static_configs:
+      - targets: ["grafana:3000"]
