@@ -69,7 +69,7 @@ grafana-storage:
 - SonarQube: Runs SonarQube for continuous code quality checks.
 - Prometheus and Grafana: Setup for monitoring your CI/CD pipeline and infrastructure.
 
-To start up the environment in the docker compose file run the following command: `docker-compose up -d` `docker-compose up -d --build`
+To start up the environment in the docker compose file run the following command: `docker-compose up -d --build`
 
 Then to make sure that all environments have been started, you can confirm by running the following command: `docker-compose ps`
 
@@ -147,6 +147,7 @@ After successfully setting up your environment using Docker Compose and Kind, th
 
 2. Access Services: Verify that Jenkins, SonarQube, Prometheus, and Grafana are accessible via their respective ports:
 
+- Registry: http://localhost:5000/
 - Jenkins: http://localhost:8080
 - SonarQube: http://localhost:9000
 - Prometheus: http://localhost:9090
@@ -172,7 +173,7 @@ After successfully setting up your environment using Docker Compose and Kind, th
 2. Configure Plugins
 
 - Go to Manage Jenkins > Manage Plugins.
-- Ensure plugins for Git, Docker, Kubernetes, Prometheus, Sonarcube and any others you anticipate needing (such as Github Pipeline, GitHub) are installed.
+- Ensure plugins for Git, Docker, Docker Pipeline Kubernetes, Prometheus, Sonarcube and any others you anticipate needing (such as Github Pipeline, GitHub) are installed.
   ![alt text](image-7.png)
 
 3.  Add Jenkins Slave:
@@ -223,3 +224,5 @@ After successfully setting up your environment using Docker Compose and Kind, th
 - Host Key Verification Strategy:
   - Set the `Host Key Verification` Strategy to `Non verifying Verification Strategy`.
     ![alt text](image-15.png)
+
+# Step 4: Create the Jenkins Pipeline

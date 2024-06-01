@@ -24,6 +24,7 @@ services:
       - "2222:22"
     volumes:
       - jenkins-slave-ssh:/root/.ssh
+      - /var/run/docker.sock:/var/run/docker.sock # Add this line to mount the Docker socket
 
   sonarqube:
     image: sonarqube:latest
@@ -48,6 +49,13 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
 
+  registry:
+    image: registry:2
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry-data:/var/lib/registry
+
 networks:
   default:
     name: labsetup_default
@@ -59,3 +67,4 @@ volumes:
   sonarqube-logs:
   sonarqube-extensions:
   grafana-storage:
+  registry-data:
