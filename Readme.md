@@ -5,6 +5,12 @@
 - **Docker**: Ensure Docker is installed on your system. You can download and install Docker from [Docker's official website](https://www.docker.com/get-started).
 - **Docker Compose**: This is used to manage multi-container applications. It is typically included with Docker Desktop for Windows and Mac. For Linux, follow the instructions [here](https://docs.docker.com/compose/install/).
 - **Git**: Required for source control management. Install from [git-scm.com](https://git-scm.com/downloads).
+- Links to access Services: Verify that Jenkins, SonarQube, Prometheus, and Grafana are accessible via their respective ports:
+  - Registry: http://localhost:5000/
+  - Jenkins: http://localhost:8080
+  - SonarQube: http://localhost:9000
+  - Prometheus: http://localhost:9090
+  - Grafana: http://localhost:3000
 
 ### 2. Setup Docker Compose for CI/CD Tools
 
