@@ -118,7 +118,7 @@ EXPOSE 22
 ENTRYPOINT ["/entrypoint.sh"]
 ```
 
-Build the image with:
+Open the terminal in the root and build the image with the following command:
 
 ```bash
 docker build -t custom-jenkins-slave .
